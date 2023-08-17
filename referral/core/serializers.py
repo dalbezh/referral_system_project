@@ -21,7 +21,7 @@ class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         read_only_fields = ("id", )
-        fields = ("phone_number", )
+        fields = ("id", "phone_number")
 
     def create(self, validated_data):
         instance, _ = User.objects.get_or_create(**validated_data)

@@ -1,10 +1,9 @@
 from django.contrib.auth import login
-from django.shortcuts import redirect
 from rest_framework import status
 from rest_framework.generics import CreateAPIView, UpdateAPIView
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.reverse import reverse
+
 
 from .models import User
 from .serializers import LoginSerializer
@@ -14,7 +13,7 @@ OTP_CODE = 1234
 
 class LoginView(CreateAPIView):
     """
-    Регистрация пользователей
+    Занесение номера телефона в базу
     """
     queryset = User.objects.all()
     permission_classes = [AllowAny]
@@ -28,10 +27,12 @@ class LoginView(CreateAPIView):
         data = {
             "status": "OK",
             "user": serializer.data,
-            "opt_page": f"http://127.0.0.1/referral/otp"
+            "opt_page": f"http://127.0.0.1:8000/referral/otp/{serializer.data['id']}"
         }
+
         print(f"Your verify code: {OTP_CODE}")
-        return Response(data)
+
+        return Response(data, status=status.HTTP_201_CREATED)
 
 
 class VerifyOTPView(UpdateAPIView):

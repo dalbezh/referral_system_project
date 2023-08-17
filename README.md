@@ -10,6 +10,7 @@ ___
 По сути представление VerifyOTPView меняет поле is_active на True и логинит пользователя.
 Делается через метод PATCH
 
-#### TODO 
-* Для LoginView в response вытаскивать `<pk>` для urls.
+
+- [x] Для LoginView в response вытаскивать `<pk>` для urls. 
 ___
+#### TODO 
