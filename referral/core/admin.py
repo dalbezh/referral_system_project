@@ -6,9 +6,9 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(UserAdmin):
-    list_display = ("username", "email", "first_name", "last_name", "phone_number")
+    list_display = ("phone_number", "username", "email")
     list_filter = ("is_staff", "is_active", "is_superuser")
-    search_fields = ('first_name', 'last_name', "username")
+    search_fields = ("username", "phone_number")
     readonly_fields = ("last_login", "date_joined")
-    ordering = ('username',)
-    exclude = ('password',)
+    ordering = ("phone_number",)
+    exclude = ("password",)

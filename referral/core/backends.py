@@ -15,18 +15,14 @@ class PasswordlessAuthBackend(ModelBackend):
         except User.DoesNotExist:
            return None
 
-    def authenticate(self, request, username=None, phone_number=None):
+    def authenticate(self, request, username=None, phone_number=None, password=None):
 
         try:
-            user = User.objects.get(
-                Q(username=username) | Q(phone_number=username)
-            )
-
+            user = User.objects.get(Q(username=username) | Q(phone_number=username))
         except User.DoesNotExist:
             return None
 
         if user.check_password(password):
             return user
-
         else:
             return None
