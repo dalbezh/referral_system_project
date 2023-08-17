@@ -11,5 +11,5 @@ ___
 Делается через метод PATCH
 
 #### TODO 
-* Для LoginView в response вытаскивать <pk> для urls.
+* Для LoginView в response вытаскивать `<pk>` для urls.
 ___
